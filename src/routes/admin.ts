@@ -1,9 +1,16 @@
-import express from 'express';
+import express from "express";
 const adminRouter = express.Router();
 
-import {register, login} from '../controllers/admin/auth'
+import {
+  register,
+  login,
+  forgotPassword,
+  resetPassword,
+} from "../controllers/admin/auth";
 
-adminRouter.post('/register', register)
-adminRouter.post('/login', login)
+adminRouter.post("/register", register);
+adminRouter.post("/login", login);
+adminRouter.get("/forgot-password/", forgotPassword);
+adminRouter.put("/reset-password/", resetPassword);
 
 export default adminRouter;

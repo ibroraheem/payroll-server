@@ -43,7 +43,13 @@ const adminSchema = new mongoose_1.Schema({
         type: String,
         required: true,
         minlength: 8,
+    },
+    resetToken: {
+        token: String,
+    },
+    resetTokenExpiry: {
+        type: Number
     }
-});
+}, { timestamps: true });
 const AdminModel = mongoose_1.default.model('Admin', adminSchema);
 exports.default = AdminModel;

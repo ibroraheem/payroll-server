@@ -7,10 +7,13 @@ const express_1 = __importDefault(require("express"));
 const database_1 = __importDefault(require("./config/database"));
 const app = (0, express_1.default)();
 const port = 3000;
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+const admin_1 = __importDefault(require("./routes/admin"));
+app.use(express_1.default.json());
 (0, database_1.default)();
+app.get("/", (req, res) => {
+    res.send("Hello, World!");
+});
+app.use("/admin", admin_1.default);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
+import dotenv from 'dotenv';
+dotenv.config();
 
-const DB_URI: string = "mongodb://localhost:27017/your_database_name";
+
 
 export default function connectDB() {
-  mongoose.connect(DB_URI);
+  mongoose.connect(process.env.DB_URI as string);
 
   const db = mongoose.connection;
 

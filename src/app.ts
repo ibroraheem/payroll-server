@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 import adminRouter from "./routes/admin";
 
+app.use(express.json());
 connectDB();
 app.get("/", (req, res) => {
   res.send("Hello, World!");
