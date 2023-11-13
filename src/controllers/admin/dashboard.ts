@@ -1,4 +1,3 @@
-import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import bcrypt from "bcryptjs";
 import fs from "fs";
@@ -35,7 +34,7 @@ export const getEmployee = async (req: Request, res: Response) => {
 };
 
 export const createEmployee = async (req: Request, res: Response) => {
-  const { firstName, lastName, email } = req.body;
+  const { firstName, lastName, email, bankInfo } = req.body;
   try {
     let existingUser;
     existingUser = await EmployeeModel.findOne({ email });
@@ -47,6 +46,8 @@ export const createEmployee = async (req: Request, res: Response) => {
         firstName,
         lastName,
         password: hashPassword,
+        bankInfo,
+        email
       });
       await newEmployee.save();
       const emailTemplate = fs.readFileSync(

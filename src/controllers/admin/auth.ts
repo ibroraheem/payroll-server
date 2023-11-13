@@ -76,7 +76,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Email not found!" });
     }
     const resetToken = crypto.randomBytes(32).toString("hex");
-    const now = Date.now() + 60 * 60 * 1000; //expire after one hour
+    const now = Date.now() + 60 * 60 * 1000;
     const resetURL = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
     await AdminModel.updateOne(
       { email },

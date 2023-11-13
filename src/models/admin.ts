@@ -1,4 +1,4 @@
-import mongoose, {Document, Schema} from 'mongoose'
+import mongoose, { Document, Schema } from 'mongoose'
 
 interface Admin extends Document {
     email: string;
@@ -9,33 +9,33 @@ interface Admin extends Document {
 }
 
 const adminSchema = new Schema<Admin>({
-    email:{
-        type: String, 
-        required: true,
-        unique: true,
-        trim: true,
-        lowercase: true,
-    },
-    username:{
+    email: {
         type: String,
         required: true,
         unique: true,
         trim: true,
         lowercase: true,
     },
-    password:{
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true,
+    },
+    password: {
         type: String,
         required: true,
         minlength: 8,
     },
-    resetToken:{
-        token:String,
+    resetToken: {
+        token: String,
     },
-    resetTokenExpiry:{
-        type:Number
+    resetTokenExpiry: {
+        type: Number
     }
 },
-{timestamps:true}
+    { timestamps: true }
 )
 
 const AdminModel = mongoose.model<Admin>('Admin', adminSchema)
