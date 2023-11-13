@@ -48,7 +48,7 @@ const getEmployee = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.getEmployee = getEmployee;
 const createEmployee = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { firstName, lastName, email } = req.body;
+    const { firstName, lastName, email, bankInfo } = req.body;
     try {
         let existingUser;
         existingUser = yield employee_1.default.findOne({ email });
@@ -61,6 +61,8 @@ const createEmployee = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 firstName,
                 lastName,
                 password: hashPassword,
+                bankInfo,
+                email
             });
             yield newEmployee.save();
             const emailTemplate = fs_1.default.readFileSync("../../helpers/mails/welcomeAdminMail.html", "utf-8");
