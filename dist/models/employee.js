@@ -25,21 +25,26 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
 const employeeSchema = new mongoose_1.Schema({
-    name: { type: "string", required: true },
+    name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    bankInfo: {
-        accountName: {
-            type: String,
-            default: "",
-        },
-        accountNumber: {
-            type: String,
-            default: "",
-        },
-        bankName: { type: String, required: true }
-    },
+    otp: { type: String, required: true },
+    otpExpires: { type: Number, required: true },
     role: { type: String, required: true, default: "employee" },
+    bankInfo: {
+        accountName: { type: String, default: "" },
+        accountNumber: { type: String, default: "" },
+        bankName: { type: String, required: true },
+    },
+    salaryInfo: {
+        salaryAmount: { type: Number, required: true },
+        monthlyBonus: { type: Number, required: true, default: 0 },
+        totalReceived: { type: Number, required: true },
+    },
+});
+employeeSchema.pre("save", function (next) {
+    this.salaryInfo.totalReceived = this.salaryInfo.monthlyBonus + this.salaryInfo.salaryAmount;
+    next();
 });
 const EmployeeModel = mongoose_1.default.model("Employee", employeeSchema);
 exports.default = EmployeeModel;
