@@ -16,6 +16,7 @@ const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const swagger_output_json_1 = __importDefault(require("./swagger-output.json"));
 const helmet_1 = __importDefault(require("helmet"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const database_1 = __importDefault(require("./config/database"));
@@ -49,7 +50,7 @@ app.get('/', (req, res) => {
     res.status(200).send('Hello World!');
 });
 app.use('/admin', admin_1.default);
-app.use('/api-docs', swagger_ui_express_1.default.serve);
+app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_output_json_1.default));
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`Server is running on port ${port}`);
 }));

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
+    "generate-swagger": "ts-node swagger-gen.ts",
     "build": "tsc"
   },
   "keywords": [],

@@ -2,6 +2,7 @@ import cors from 'cors';
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger-output.json';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import connectDB from './config/database';
@@ -48,7 +49,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/admin', adminRouter);
 
 // Swagger UI setup
-app.use('/api-docs', swaggerUi.serve);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Start the server
 app.listen(port, async () => {
