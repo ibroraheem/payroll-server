@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const swagger_autogen_1 = __importDefault(require("swagger-autogen"));
 const outputFile = './swagger-output.json';
 const generateSwagger = () => __awaiter(void 0, void 0, void 0, function* () {
-    const endpointsFiles = ['./routes/*.js'];
+    const endpointsFiles = ['./routes/*.ts'];
     const doc = yield (0, swagger_autogen_1.default)()(outputFile, endpointsFiles);
     console.log('Swagger documentation generated successfully!');
 });

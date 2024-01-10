@@ -49,7 +49,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/admin', adminRouter);
 
 // Swagger UI setup
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.get('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Start the server
 app.listen(port, async () => {
