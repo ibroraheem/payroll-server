@@ -49,7 +49,8 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/admin', adminRouter);
 
 // Swagger UI setup
-app.get('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// Swagger UI setup
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }));
 app.use('/swagger-ui', express.static('node_modules/swagger-ui-dist'));
 // Start the server
 app.listen(port, async () => {
