@@ -51,6 +51,7 @@ app.get('/', (req, res) => {
 });
 app.use('/admin', admin_1.default);
 app.get('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_output_json_1.default));
+app.use('/swagger-ui', express_1.default.static('node_modules/swagger-ui-dist'));
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`Server is running on port ${port}`);
 }));
